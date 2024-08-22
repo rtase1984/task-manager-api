@@ -1,0 +1,128 @@
+{
+    "info": {
+      "name": "Task Manager API",
+      "description": "Colección de Postman para probar todas las peticiones de la API de gestión de tareas.",
+      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+      {
+        "name": "Crear tarea",
+        "request": {
+          "method": "POST",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json",
+              "type": "text"
+            }
+          ],
+          "body": {
+            "mode": "raw",
+            "raw": "{\n\t\"title\": \"Nueva Tarea\",\n\t\"description\": \"Descripción de la tarea\",\n\t\"dueDate\": \"2024-08-30T12:00:00Z\"\n}"
+          },
+          "url": {
+            "raw": "http://localhost:8080/tasks",
+            "protocol": "http",
+            "host": [
+              "localhost"
+            ],
+            "port": "8080",
+            "path": [
+              "tasks"
+            ]
+          }
+        },
+        "response": []
+      },
+      {
+        "name": "Obtener todas las tareas",
+        "request": {
+          "method": "GET",
+          "header": [],
+          "url": {
+            "raw": "http://localhost:8080/tasks",
+            "protocol": "http",
+            "host": [
+              "localhost"
+            ],
+            "port": "8080",
+            "path": [
+              "tasks"
+            ]
+          }
+        },
+        "response": []
+      },
+      {
+        "name": "Obtener tarea por ID",
+        "request": {
+          "method": "GET",
+          "header": [],
+          "url": {
+            "raw": "http://localhost:8080/tasks/1",
+            "protocol": "http",
+            "host": [
+              "localhost"
+            ],
+            "port": "8080",
+            "path": [
+              "tasks",
+              "1"
+            ]
+          }
+        },
+        "response": []
+      },
+      {
+        "name": "Actualizar tarea",
+        "request": {
+          "method": "PUT",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json",
+              "type": "text"
+            }
+          ],
+          "body": {
+            "mode": "raw",
+            "raw": "{\n\t\"title\": \"Tarea Actualizada\",\n\t\"description\": \"Descripción actualizada de la tarea\",\n\t\"dueDate\": \"2024-09-01T12:00:00Z\"\n}"
+          },
+          "url": {
+            "raw": "http://localhost:8080/tasks/1",
+            "protocol": "http",
+            "host": [
+              "localhost"
+            ],
+            "port": "8080",
+            "path": [
+              "tasks",
+              "1"
+            ]
+          }
+        },
+        "response": []
+      },
+      {
+        "name": "Eliminar tarea",
+        "request": {
+          "method": "DELETE",
+          "header": [],
+          "url": {
+            "raw": "http://localhost:8080/tasks/1",
+            "protocol": "http",
+            "host": [
+              "localhost"
+            ],
+            "port": "8080",
+            "path": [
+              "tasks",
+              "1"
+            ]
+          }
+        },
+        "response": []
+      }
+    ]
+  }
+  

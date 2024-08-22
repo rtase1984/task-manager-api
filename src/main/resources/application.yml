@@ -7,7 +7,7 @@ spring:
   application:
     name: tasks-mngr-api
   datasource:
-    url: jdbc:postgresql://localhost:5432/task_management_db  # URL de la base de datos
+    url: jdbc:postgresql://postgres-db:5432/task_management_db  # URL de la base de datos
     username: ${DB_USERNAME}  # Cambia esto por tu usuario de la base de datos
     password: ${DB_PASSWORD}  # Cambia esto por tu contraseña de la base de datos
     driver-class-name: org.postgresql.Driver
