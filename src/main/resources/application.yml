@@ -1,0 +1,28 @@
+# Configuración del servidor
+server:
+  port: 8080  # Puerto en el que se ejecuta la aplicación
+
+# Configuración de la base de datos
+spring:
+  application:
+    name: tasks-mngr-api
+  datasource:
+    url: jdbc:postgresql://localhost:5432/task_management_db  # URL de la base de datos
+    username: ${DB_USERNAME}  # Cambia esto por tu usuario de la base de datos
+    password: ${DB_PASSWORD}  # Cambia esto por tu contraseña de la base de datos
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update  # Esta opción actualiza el esquema de la base de datos automáticamente en cada inicio
+    show-sql: true  # Muestra las consultas SQL en la consola
+    properties:
+      hibernate:
+        format_sql: true  # Formatea las consultas SQL para que sean más legibles
+      hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
+# Configuración de logs
+logging:
+  level:
+    root: INFO  # Nivel de log para toda la aplicación
+    org.springframework.web: DEBUG  # Nivel de log para los controladores
+    com.crja.tasks_mngr_api: DEBUG  # Nivel de log para tu paquete base
