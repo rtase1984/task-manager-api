@@ -38,3 +38,34 @@ src/
 |   |-- resources/
 |       |-- application.yml            # Configuraciones de la aplicación
 |-- test/                               # Pruebas unitarias e integración
+=======
+
+
+## Configuración y ejecución
+
+### Requisitos previos
+
+** Docker
+** Docker Compose
+** JDK 17
+
+### Configuración de la base de datos
+
+La base de datos PostgreSQL se configura automáticamente utilizando Docker Compose. Los detalles de configuración se encuentran en el archivo docker-compose.yml.
+
+### Iniciar el proyecto
+
+1. Clona el repositorio:
+
+´´´bash 
+git clone https://github.com/rtase1984/task-manager-api.git
+cd task-manager-api 
+´´´
+
+
+2. Construye y levanta los contenedores con Docker Compose:
+
+´´´bash docker-compose up --build ´´´
+
+
+La aplicación estará disponible en http://localhost:8080.
