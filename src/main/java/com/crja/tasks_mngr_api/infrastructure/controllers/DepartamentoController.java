@@ -23,7 +23,7 @@ public class DepartamentoController {
     @Autowired
     private DepartamentoService departamentoService;
 
-    @PostMapping("/new")
+    @PostMapping
     public ResponseEntity<DepartamentoDTO> criarDepartamento(@RequestBody DepartamentoDTO departamentoDTO) {
         DepartamentoDTO criado = departamentoService.criarDepartamento(departamentoDTO);
         return ResponseEntity.status(201).body(criado);
