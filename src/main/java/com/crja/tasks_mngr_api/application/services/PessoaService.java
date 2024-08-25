@@ -10,9 +10,11 @@ import com.crja.tasks_mngr_api.domain.repository.PessoaRepository;
 import com.crja.tasks_mngr_api.domain.repository.TarefaRepository;
 import com.crja.tasks_mngr_api.infrastructure.dto.PessoaDTO;
 import com.crja.tasks_mngr_api.infrastructure.dto.PessoaResponseDTO;
+import com.crja.tasks_mngr_api.infrastructure.dto.PessoaResponseMediaHorasGastasDTO;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -91,6 +93,11 @@ public class PessoaService {
     public Integer getTotalHorasGastas(Long pessoaId) {
         Integer totalHoras = pessoaRepository.totalHorasGastasPorPessoa(pessoaId);
         return totalHoras != null ? totalHoras : 0;
+    }
+
+    public List<PessoaResponseMediaHorasGastasDTO> mediaHorasDePessoasPorNomeEPeriodo(String nome, LocalDate dataInicio, LocalDate dataFim){
+        List<PessoaResponseMediaHorasGastasDTO> resultado = pessoaRepository.mediaHorasDePessoasPorNomeEPeriodo(nome, dataInicio, dataFim);
+        return resultado != null ? resultado : Collections.emptyList();
     }
 
     private PessoaDTO toDTO(Pessoa pessoa){

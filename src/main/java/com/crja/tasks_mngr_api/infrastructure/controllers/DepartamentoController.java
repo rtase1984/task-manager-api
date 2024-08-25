@@ -48,9 +48,5 @@ public class DepartamentoController {
         List<DepartamentoResponseDTO> departamentos = departamentoService.obterResumoPorDepartamento();
         return ResponseEntity.ok(departamentos);
     }
-
-
-
-    //Listar departamento e quantidade de pessoas e tarefas (get/departamentos)
     
 }

@@ -19,6 +19,7 @@ import com.crja.tasks_mngr_api.application.services.PessoaService;
 import com.crja.tasks_mngr_api.domain.repository.DepartamentoRepository;
 import com.crja.tasks_mngr_api.infrastructure.dto.PessoaDTO;
 import com.crja.tasks_mngr_api.infrastructure.dto.PessoaResponseDTO;
+import com.crja.tasks_mngr_api.infrastructure.dto.PessoaResponseMediaHorasGastasDTO;
 
 
 @RestController
@@ -56,12 +57,19 @@ public class PessoaController {
         return ResponseEntity.ok(pessoas);
     }
 
-    @GetMapping("/gastos")
-    public ResponseEntity<List<PessoaDTO>> buscarPessoasPorNomeEPeriodo(@RequestParam String nome, @RequestParam String dataInicio, @RequestParam String dataFim) {
-        List<PessoaDTO> pessoas = pessoaService.buscarPessoasPorNomeEPeriodo(nome, LocalDate.parse(dataInicio), LocalDate.parse(dataFim));
-        return ResponseEntity.ok(pessoas);
+    //@GetMapping("/gastos")
+    //public ResponseEntity<List<PessoaDTO>> buscarPessoasPorNomeEPeriodo(@RequestParam String nome, @RequestParam String dataInicio, @RequestParam String dataFim) {
+    //    List<PessoaDTO> pessoas = pessoaService.buscarPessoasPorNomeEPeriodo(nome, LocalDate.parse(dataInicio), LocalDate.parse(dataFim));
+    //    return ResponseEntity.ok(pessoas);
  
+    //}
+
+    @GetMapping("/gastos")
+    public ResponseEntity<List<PessoaResponseMediaHorasGastasDTO>> mediaHorasPessoasPorNomeEPeriodo(@RequestParam String nome, @RequestParam String dataInicio, @RequestParam String dataFim) {
+        List<PessoaResponseMediaHorasGastasDTO> pessoas = pessoaService.mediaHorasDePessoasPorNomeEPeriodo(nome, LocalDate.parse(dataInicio), LocalDate.parse(dataFim));
+        return ResponseEntity.ok(pessoas);
     }
+    
 
     //Buscar pessoas por nome e período, retorna média de horas gastas por tarefa. (get/pessoas/gastos)	
 }

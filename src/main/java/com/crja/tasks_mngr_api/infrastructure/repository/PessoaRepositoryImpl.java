@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.crja.tasks_mngr_api.domain.models.Pessoa;
 import com.crja.tasks_mngr_api.domain.repository.PessoaRepository;
+import com.crja.tasks_mngr_api.infrastructure.dto.PessoaResponseMediaHorasGastasDTO;
 
 @Repository
 public interface PessoaRepositoryImpl extends PessoaRepository, JpaRepository<Pessoa, Long>{
@@ -22,4 +23,18 @@ public interface PessoaRepositoryImpl extends PessoaRepository, JpaRepository<Pe
     @Override
     @Query(value = "SELECT SUM(t.duracao) FROM Pessoa p JOIN p.tarefas t WHERE t.finalizado = TRUE AND p.id = :pessoaId GROUP BY p.id ")
     Integer totalHorasGastasPorPessoa(@Param("pessoaId") Long pessoaId);
+
+    @Override
+    @Query("SELECT new com.crja.tasks_mngr_api.infrastructure.dto.PessoaResponseMediaHorasGastasDTO(" +
+           "p.nome, " +
+           "SUM(t.duracao), " +
+           "AVG(t.duracao)) " +
+           "FROM Pessoa p " +
+           "JOIN p.tarefas t " +
+           "WHERE p.nome LIKE %:nome% " +
+           "AND t.prazo BETWEEN :dataInicio AND :dataFim " +
+           "GROUP BY p.nome")
+    List<PessoaResponseMediaHorasGastasDTO> mediaHorasDePessoasPorNomeEPeriodo(@Param("nome") String nome, 
+                                                 @Param("dataInicio") LocalDate dataInicio, 
+                                                 @Param("dataFim") LocalDate dataFim);
 }
