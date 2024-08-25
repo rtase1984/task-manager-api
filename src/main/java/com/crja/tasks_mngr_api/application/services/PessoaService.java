@@ -100,11 +100,17 @@ public class PessoaService {
         return resultado != null ? resultado : Collections.emptyList();
     }
 
-    private PessoaDTO toDTO(Pessoa pessoa){
+    private PessoaDTO toDTO(Pessoa pessoa) {
         PessoaDTO dto = new PessoaDTO();
         dto.setId(pessoa.getId());
         dto.setNome(pessoa.getNome());
-        dto.setDepartamentoId(pessoa.getDepartamento().getId());
+        
+        if (pessoa.getDepartamento() != null) {
+            dto.setDepartamentoId(pessoa.getDepartamento().getId());
+        } else {
+            dto.setDepartamentoId(null); // O maneja el caso de otra manera si es necesario
+        }
+        
         List<Long> tarefaIds = pessoa.getTarefas().stream()
                                     .map(tarefa -> tarefa.getId())
                                     .collect(Collectors.toList());

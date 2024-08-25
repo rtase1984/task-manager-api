@@ -1,0 +1,386 @@
+{
+	"info": {
+		"_postman_id": "43941371-e61a-4747-9fac-9553f8ab39bd",
+		"name": "Task Manager API",
+		"description": "Colección de Postman para probar todas las peticiones de la API de gestión de tareas.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22692733"
+	},
+	"item": [
+		{
+			"name": "/departamentos",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"titulo\": \"Nueva Tarea\",\n    \"descricao\": \"Descripción de la tarea\",\n    \"prazo\": \"2024-08-30T12:00:00Z\",\n    \"departamento\": null,\n    \"duracao\": 5,\n    \"pessoaAlocada\": null,\n    \"finalizado\": true\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/tarefas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tarefas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "departamentos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/departamentos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"departamentos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atualizar departamento",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\": \"Tarea Actualizada\",\n\t\"description\": \"Descripción actualizada de la tarea\",\n\t\"dueDate\": \"2024-09-01T12:00:00Z\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/tasks/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tasks",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Criar pessoas",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\": \"João Silva\",\n    \"departamentoId\": 2,\n    \"tarefaIds\": []\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/pessoas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"pessoas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atualizar pessoas",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\": \"João Silva\",\n    \"departamentoId\": 2,\n    \"tarefaIds\": [1]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/pessoas/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"pessoas",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obter todas as pessoas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/pessoas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"pessoas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pessoas/gastos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/pessoas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"pessoas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear tarea",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"titulo\": \"Nueva Tarea\",\n    \"descricao\": \"Descripción de la tarea\",\n    \"prazo\": \"2024-08-30T12:00:00Z\",\n    \"departamento\": null,\n    \"duracao\": 5,\n    \"pessoaAlocada\": null,\n    \"finalizado\": true\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/tarefas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tarefas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atualizar tarefa",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"titulo\": \"Nueva Tarea\",\n    \"descricao\": \"Descripción de la tarea\",\n    \"prazo\": \"2024-08-30T12:00:00Z\",\n    \"departamento\": null,\n    \"duracao\": 5,\n    \"pessoaAlocada\": null,\n    \"finalizado\": true\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/tarefas/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tarefas",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Alocar pessoa a  tarefa",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"titulo\": \"Nueva Tarea\",\n    \"descricao\": \"Descripción de la tarea\",\n    \"prazo\": \"2024-08-30T12:00:00Z\",\n    \"departamento\": null,\n    \"duracao\": 5,\n    \"pessoaAlocada\": null,\n    \"finalizado\": true\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/tarefas/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tarefas",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Finalizar tarefa",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\": \"Tarea Actualizada\",\n\t\"description\": \"Descripción actualizada de la tarea\",\n\t\"dueDate\": \"2024-09-01T12:00:00Z\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/tarefas/finalizar/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tarefas",
+						"finalizar",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obter todas las tareas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/tasks",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tasks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obter tarefa por ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/tarefas/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tarefas",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obter tarefas pendentes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/tarefas/pendentes/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tarefas",
+						"pendentes",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar tarefa",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/tasks/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tasks",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

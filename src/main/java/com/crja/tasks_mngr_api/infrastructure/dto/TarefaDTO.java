@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TarefaDTO {
+    private Long id;
     private String titulo;
     private String descripcion;
     private LocalDate plazo;

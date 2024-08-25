@@ -87,12 +87,16 @@ public class TarefaService {
 
     private TarefaDTO toDTO(Tarefa tarefa){
         TarefaDTO dto = new TarefaDTO();
-        dto.setDepartamentoId(tarefa.getDepartamento().getId());
+        if (tarefa.getDepartamento() != null) {
+            dto.setDepartamentoId(tarefa.getDepartamento().getId());
+        }
+        if (tarefa.getPessoaAlocada() != null) {
+            dto.setPessoaId(tarefa.getPessoaAlocada().getId());
+        }
         dto.setDescripcion(tarefa.getDescricao());
         dto.setDuracion(tarefa.getDuracao());
         dto.setPlazo(tarefa.getPrazo());
         dto.setTitulo(tarefa.getTitulo());
-        dto.setPessoaId(tarefa.getPessoaAlocada().getId());
 
         return dto;
     }
