@@ -1,18 +1,17 @@
-# Task Manager API
 
-## Descripción
+## Descrição
 
-Este proyecto es una API para la gestión de tareas que permite a los usuarios crear, actualizar, eliminar y consultar tareas de manera eficiente. La API está diseñada siguiendo los principios de arquitectura limpia y utilizando tecnologías modernas como Spring Boot, PostgreSQL y Docker. Este proyecto fue desarrollado como parte de una prueba técnica para un puesto de desarrollador Java.
+Este projeto é uma API para a gestão de tarefas que permite aos usuários criar, atualizar, excluir e consultar tarefas de forma eficiente. A API é projetada seguindo os princípios de arquitetura limpa e utilizando tecnologias modernas como Spring Boot, PostgreSQL e Docker. Este projeto foi desenvolvido como parte de um teste técnico para uma vaga de desenvolvedor Java.
 
 ## Características
 
-- **Gestión de tareas:** Crear, leer, actualizar y eliminar tareas.
-- **API RESTful:** Interfaz de usuario amigable que sigue las mejores prácticas de REST.
-- **Persistencia de datos:** Uso de PostgreSQL para el almacenamiento persistente de tareas.
-- **Contenerización:** El proyecto está preparado para ejecutarse en un entorno Docker, lo que facilita su despliegue.
-- **Arquitectura limpia:** La arquitectura del proyecto sigue el enfoque de la arquitectura hexagonal para una alta mantenibilidad y escalabilidad.
+- **Gestão de tarefas:** Criar, ler, atualizar e excluir tarefas.
+- **API RESTful:** Interface amigável que segue as melhores práticas de REST.
+- **Persistência de dados:** Uso de PostgreSQL para armazenamento persistente de tarefas.
+- **Contenerização:** O projeto está preparado para ser executado em um ambiente Docker, facilitando seu deploy.
+- **Arquitetura limpa:** A arquitetura do projeto segue o enfoque da arquitetura hexagonal para alta manutenibilidade e escalabilidade.
 
-## Tecnologías utilizadas
+## Tecnologias utilizadas
 
 - **Java 17**
 - **Spring Boot 3.x**
@@ -21,51 +20,58 @@ Este proyecto es una API para la gestión de tareas que permite a los usuarios c
 - **Docker Compose**
 - **Maven**
 
-## Estructura del proyecto
+## Estrutura do projeto
 
-El proyecto sigue la estructura estándar de un proyecto Spring Boot con una arquitectura hexagonal:
+O projeto segue a estrutura padrão de um projeto Spring Boot com uma arquitetura hexagonal:
+
 
 ```bash
 src/
 |-- main/
 |   |-- java/
-|   |   |-- com.example.taskmanager/   # Código fuente principal
-|   |       |-- application/           # Lógica de aplicación (casos de uso)
-|   |       |-- domain/                # Entidades de dominio y lógica de negocio
-|   |       |-- infrastructure/        # Adaptadores y configuración
-|   |       |-- TaskManagerApplication.java   # Clase principal
+|   |   |-- com.crja.tasks_mngr_api/   # Código fonte principal
+|   |       |-- application/           # Lógica de aplicação (casos de uso)
+|   |       |-- domain/                # Entidades de domínio e lógica de negócio
+|   |       |-- infrastructure/        # Adaptadores e configuração
+|   |       |-- TaskManagerApplication.java   # Classe principal
 |   |
 |   |-- resources/
-|       |-- application.yml            # Configuraciones de la aplicación
-|-- test/                               # Pruebas unitarias e integración
+|       |-- application.yml            # Configurações da aplicaçã
+|-- test/                               # Testes unitários e integração
 =======
 
 
-## Configuración y ejecución
+## Configuração e execução
 
-### Requisitos previos
+### Requisitos prévios
 
 ** Docker
 ** Docker Compose
 ** JDK 17
 
-### Configuración de la base de datos
+### Configuração do banco de dados
 
-La base de datos PostgreSQL se configura automáticamente utilizando Docker Compose. Los detalles de configuración se encuentran en el archivo docker-compose.yml.
+O banco de dados PostgreSQL é configurado automaticamente usando Docker Compose. Os detalhes da configuração estão no arquivo``docker-compose.yml``.
 
-### Iniciar el proyecto
+### Iniciar o projeto
 
-1. Clona el repositorio:
+1. Clone o repositório:
 
 ´´´bash 
 git clone https://github.com/rtase1984/task-manager-api.git
 cd task-manager-api 
 ´´´
 
-
-2. Construye y levanta los contenedores con Docker Compose:
+2. Construa e inicie os contêineres com Docker Compose:
 
 ´´´bash docker-compose up --build ´´´
 
 
-La aplicación estará disponible en http://localhost:8080.
+A aplicação estará disponível em http://localhost:8080.
+
+### Documentação com Swagger
+
+Para consultar os endpoints disponíveis e testar a API, você pode usar o Swagger. Após iniciar o projeto, acesse http://localhost:8080/swagger-ui.html em seu navegador. A interface do Swagger irá exibir todos os endpoints da API, permitindo visualizar e interagir com eles de forma intuitiva.
+
+
+

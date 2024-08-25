@@ -23,6 +23,10 @@ import com.crja.tasks_mngr_api.infrastructure.dto.PessoaResponseMediaHorasGastas
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
@@ -37,24 +41,43 @@ public class PessoaController {
         this.pessoaService = pessoaService;
     }
 
+    @Operation(summary = "Adicionar uma nova pessoa", description = "Adiciona uma nova pessoa ao sistema.")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "201", description = "Pessoa criada com sucesso", content = @Content(schema = @Schema(implementation = PessoaDTO.class))),
+        @ApiResponse(responseCode = "400", description = "Dados inválidos fornecidos")
+    })
     @PostMapping
     public ResponseEntity<PessoaDTO> adicionarPessoa(@RequestBody PessoaDTO pessoaDTO) {
         PessoaDTO pessoaNova = pessoaService.adicionarPessoa(pessoaDTO, pessoaDTO.getDepartamentoId());
         return ResponseEntity.status(201).body(pessoaNova);
     }
 
+    @Operation(summary = "Atualizar uma pessoa", description = "Atualiza as informações de uma pessoa existente.")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Pessoa atualizada com sucesso", content = @Content(schema = @Schema(implementation = PessoaDTO.class))),
+        @ApiResponse(responseCode = "404", description = "Pessoa não encontrada")
+    })
    @PutMapping("/{id}")
     public ResponseEntity<PessoaDTO> atualizarPessoa(@PathVariable Long id, @RequestBody PessoaDTO pessoaDTO) {
             PessoaDTO pessoaAtualizada = pessoaService.atualizarPessoa(id, pessoaDTO);
             return ResponseEntity.ok(pessoaAtualizada);
     }
 
+    @Operation(summary = "Eliminar uma pessoa", description = "Elimina uma pessoa do sistema.")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "204", description = "Pessoa eliminada com sucesso"),
+        @ApiResponse(responseCode = "404", description = "Pessoa não encontrada")
+    })
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminarPessoa(@PathVariable Long id) {
         pessoaService.eliminarPessoa(id);
         return ResponseEntity.noContent().build();
     }
 
+    @Operation(summary = "Listar todas as pessoas", description = "Recupera uma lista de todas as pessoas.")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Lista de pessoas recuperada com sucesso", content = @Content(schema = @Schema(implementation = PessoaResponseDTO.class)))
+    })
     @GetMapping
     public ResponseEntity<List<PessoaResponseDTO>> listarPessoas() {
         List<PessoaResponseDTO> pessoas = pessoaService.listarPessoas();
