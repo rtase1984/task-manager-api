@@ -63,13 +63,13 @@ O banco de dados PostgreSQL é configurado automaticamente usando Docker Compose
 ```
 
 2. 
-```bash  
+``` 
  mvn clean package -DskipTests
  ```
 
 3. Construa e inicie os contêineres com Docker Compose:
 
-```bash 
+``` 
     docker-compose up --build 
 ```
 
