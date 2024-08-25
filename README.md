@@ -57,11 +57,13 @@ O banco de dados PostgreSQL é configurado automaticamente usando Docker Compose
 
 1. Clone o repositório:
 
-```bash 
-git clone https://github.com/rtase1984/task-manager-api.git
-cd task-manager-api 
+```bash
+
+    git clone https://github.com/rtase1984/task-manager-api.git
+
+    cd task-manager-api 
 ```
-2.
+2. 
 ```bash  
  mvn clean package -DskipTests
  ```
