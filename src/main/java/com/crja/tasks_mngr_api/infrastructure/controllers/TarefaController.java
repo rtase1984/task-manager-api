@@ -67,5 +67,4 @@ public class TarefaController {
         return ResponseEntity.ok(tarefas);
     }
 
-    //Listar 3 tarefas que estejam sem pessoa alocada com os prazos mais antigos. (get/tarefas/pendentes)
 }

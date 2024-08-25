@@ -21,9 +21,13 @@ import com.crja.tasks_mngr_api.infrastructure.dto.PessoaDTO;
 import com.crja.tasks_mngr_api.infrastructure.dto.PessoaResponseDTO;
 import com.crja.tasks_mngr_api.infrastructure.dto.PessoaResponseMediaHorasGastasDTO;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping("/pessoas")
+@Tag(name = "Pessoa Controller", description = "Endpoints para a gestão de pessoas")
 public class PessoaController {
 
     private final PessoaService pessoaService;
@@ -57,19 +61,16 @@ public class PessoaController {
         return ResponseEntity.ok(pessoas);
     }
 
-    //@GetMapping("/gastos")
-    //public ResponseEntity<List<PessoaDTO>> buscarPessoasPorNomeEPeriodo(@RequestParam String nome, @RequestParam String dataInicio, @RequestParam String dataFim) {
-    //    List<PessoaDTO> pessoas = pessoaService.buscarPessoasPorNomeEPeriodo(nome, LocalDate.parse(dataInicio), LocalDate.parse(dataFim));
-    //    return ResponseEntity.ok(pessoas);
- 
-    //}
-
     @GetMapping("/gastos")
-    public ResponseEntity<List<PessoaResponseMediaHorasGastasDTO>> mediaHorasPessoasPorNomeEPeriodo(@RequestParam String nome, @RequestParam String dataInicio, @RequestParam String dataFim) {
+    @Operation(summary = "Buscar pessoas por nome e período",
+               description = "Este endpoint busca pessoas por nome e período, e retorna a média de horas gastas por tarefa.")
+    public ResponseEntity<List<PessoaResponseMediaHorasGastasDTO>> mediaHorasPessoasPorNomeEPeriodo(
+        @RequestParam @Parameter(description = "Nome da pessoa") String nome,
+        @RequestParam @Parameter(description = "Data de início no formato AAAA-MM-DD") String dataInicio,
+        @RequestParam @Parameter(description = "Data de fim no formato AAAA-MM-DD") String dataFim) {
+
         List<PessoaResponseMediaHorasGastasDTO> pessoas = pessoaService.mediaHorasDePessoasPorNomeEPeriodo(nome, LocalDate.parse(dataInicio), LocalDate.parse(dataFim));
         return ResponseEntity.ok(pessoas);
     }
     
-
-    //Buscar pessoas por nome e período, retorna média de horas gastas por tarefa. (get/pessoas/gastos)	
 }
