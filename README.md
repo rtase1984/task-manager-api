@@ -63,6 +63,7 @@ O banco de dados PostgreSQL é configurado automaticamente usando Docker Compose
 
     cd task-manager-api 
 ```
+
 2. 
 ```bash  
  mvn clean package -DskipTests
