@@ -12,5 +12,6 @@ public interface PessoaRepository {
     void deleteById(Long id);
     List<Pessoa> findAll();
     List<Pessoa> findByNomeAndTarefasPeriodo(String nome, LocalDate dataInicio, LocalDate dataFim);
+    Integer totalHorasGastasPorPessoa(Long id);
 
 }

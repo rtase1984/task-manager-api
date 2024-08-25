@@ -3,6 +3,7 @@ package com.crja.tasks_mngr_api.infrastructure.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.crja.tasks_mngr_api.application.services.DepartamentoService;
 import com.crja.tasks_mngr_api.infrastructure.dto.DepartamentoDTO;
+import com.crja.tasks_mngr_api.infrastructure.dto.DepartamentoResponseDTO;
 
 @RestController
 @RequestMapping("/departamentos")
@@ -42,10 +44,13 @@ public class DepartamentoController {
     }
 
     @GetMapping
-    public ResponseEntity<List<DepartamentoDTO>> listarDepartamentos() {
-        List<DepartamentoDTO> departamentos = departamentoService.listarDepartamentos();
+    public ResponseEntity<List<DepartamentoResponseDTO>> listarDepartamentos() {
+        List<DepartamentoResponseDTO> departamentos = departamentoService.obterResumoPorDepartamento();
         return ResponseEntity.ok(departamentos);
     }
 
 
+
+    //Listar departamento e quantidade de pessoas e tarefas (get/departamentos)
+    
 }

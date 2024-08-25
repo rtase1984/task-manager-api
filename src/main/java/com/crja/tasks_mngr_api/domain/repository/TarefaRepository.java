@@ -8,7 +8,7 @@ import com.crja.tasks_mngr_api.domain.models.Tarefa;
 public interface TarefaRepository {
     Tarefa save(Tarefa tarefa);
     Optional<Tarefa> findById(Long id);
-    List<Tarefa> findTop3ByPessoaIsNullOrderByPrazoAsc();
+    List<Tarefa> findTop3ByPessoaAlocadaIsNullOrderByPrazoAsc();
     List<Tarefa> findAll();
 
 }

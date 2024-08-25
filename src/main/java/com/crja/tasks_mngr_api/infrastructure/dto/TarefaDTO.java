@@ -13,8 +13,9 @@ public class TarefaDTO {
     private String titulo;
     private String descripcion;
     private LocalDate plazo;
-    private int duracion;
+    private Integer duracion;
     private Long departamentoId;
     private Long pessoaId;
+    private boolean finalizado;
 
 }

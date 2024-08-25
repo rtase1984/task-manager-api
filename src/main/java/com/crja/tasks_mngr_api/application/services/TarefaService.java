@@ -31,6 +31,9 @@ public class TarefaService {
 
     public TarefaDTO adicionarTarefa(TarefaDTO tarefaDTO) {
         
+        if (tarefaDTO.getDepartamentoId() == null || tarefaDTO.getPessoaId() == null) {
+            throw new IllegalArgumentException("ID Departamento e ID Pessoa não podem ser nulos");
+        }
         Tarefa tarefaNova = new Tarefa();
         Departamento departamento = departamentoRepository.findById(tarefaDTO.getDepartamentoId())
                 .orElseThrow(() -> new ResourceNotFoundException("Departamento não encontrado"));
@@ -48,7 +51,7 @@ public class TarefaService {
         Tarefa tarefa = tarefaRepository.findById(tarefaId).orElseThrow(() -> new ResourceNotFoundException("Tarefa não encontrada"));
         
         Pessoa pessoa = pessoaRepository.findById(pessoaId)
-                .orElseThrow(() -> new ResourceNotFoundException("Departamento não encontrado"));
+                .orElseThrow(() -> new ResourceNotFoundException("Pessoa não encontrada"));
         
         if (!pessoa.getDepartamento().equals(tarefa.getDepartamento())) {
             throw new IllegalArgumentException("A pessoa não pertence ao departamento da tarefa.");
@@ -69,7 +72,7 @@ public class TarefaService {
     }
 
     public List<TarefaDTO> listarTarefasPendentes() {
-        List<Tarefa> tarefasPendentes = tarefaRepository.findTop3ByPessoaIsNullOrderByPrazoAsc();
+        List<Tarefa> tarefasPendentes = tarefaRepository.findTop3ByPessoaAlocadaIsNullOrderByPrazoAsc();
         return tarefasPendentes.stream()
                         .map(this::toDTO)
                         .collect(Collectors.toList());

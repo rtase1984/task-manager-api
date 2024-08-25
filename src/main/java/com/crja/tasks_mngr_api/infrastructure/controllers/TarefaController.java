@@ -3,6 +3,7 @@ package com.crja.tasks_mngr_api.infrastructure.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,14 +27,21 @@ public class TarefaController {
     @PostMapping
     public ResponseEntity<TarefaDTO> adicionarTarefa(@RequestBody TarefaDTO tarefaDTO) {
         TarefaDTO tarefaNova = tarefaService.adicionarTarefa(tarefaDTO);
-        return ResponseEntity.status(201).body(tarefaNova);
+        return ResponseEntity.status(HttpStatus.CREATED).body(tarefaNova);
     }
 
     @PutMapping("/alocar/{id}")
-    public ResponseEntity<TarefaDTO> alocarPessoa(@PathVariable Long id, @RequestParam Long pessoaId) {
-        TarefaDTO tarefaAtualizada = new TarefaDTO();
-        tarefaAtualizada = tarefaService.alocarPessoaNaTarefa(id, pessoaId);
-        return ResponseEntity.ok(tarefaAtualizada);
+    public ResponseEntity<?> alocarPessoa(@PathVariable Long id, @RequestParam Long pessoaId) {
+        try {
+            tarefaService.alocarPessoaNaTarefa(id, pessoaId);
+            return ResponseEntity.ok().build();
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                                 .body("Erro interno no servidor.");
+        }
+
     }
 
     @PutMapping("/finalizar/{id}")
@@ -58,4 +66,6 @@ public class TarefaController {
         
         return ResponseEntity.ok(tarefas);
     }
+
+    //Listar 3 tarefas que estejam sem pessoa alocada com os prazos mais antigos. (get/tarefas/pendentes)
 }

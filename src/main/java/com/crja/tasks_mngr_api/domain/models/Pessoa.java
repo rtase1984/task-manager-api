@@ -1,5 +1,6 @@
 package com.crja.tasks_mngr_api.domain.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -30,8 +31,8 @@ public class Pessoa {
     @JoinColumn(name = "departamento_id")
     private Departamento departamento;
 
-    @OneToMany(mappedBy = "persona", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Tarefa> tarefas;
+    @OneToMany(mappedBy = "pessoaAlocada", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Tarefa> tarefas  = new ArrayList<>(); ;
 
     public int calcularTotalHorasGastas() {
         return tarefas.stream().mapToInt(Tarefa::getDuracao).sum();

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.crja.tasks_mngr_api.application.services.PessoaService;
 import com.crja.tasks_mngr_api.domain.repository.DepartamentoRepository;
 import com.crja.tasks_mngr_api.infrastructure.dto.PessoaDTO;
+import com.crja.tasks_mngr_api.infrastructure.dto.PessoaResponseDTO;
 
 
 @RestController
@@ -50,8 +51,8 @@ public class PessoaController {
     }
 
     @GetMapping
-    public ResponseEntity<List<PessoaDTO>> listarPessoas() {
-        List<PessoaDTO> pessoas = pessoaService.listarPessoas();
+    public ResponseEntity<List<PessoaResponseDTO>> listarPessoas() {
+        List<PessoaResponseDTO> pessoas = pessoaService.listarPessoas();
         return ResponseEntity.ok(pessoas);
     }
 
@@ -61,4 +62,6 @@ public class PessoaController {
         return ResponseEntity.ok(pessoas);
  
     }
+
+    //Buscar pessoas por nome e período, retorna média de horas gastas por tarefa. (get/pessoas/gastos)	
 }

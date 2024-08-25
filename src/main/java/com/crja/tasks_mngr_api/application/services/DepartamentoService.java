@@ -10,6 +10,7 @@ import com.crja.tasks_mngr_api.domain.exceptions.ResourceNotFoundException;
 import com.crja.tasks_mngr_api.domain.models.Departamento;
 import com.crja.tasks_mngr_api.domain.repository.DepartamentoRepository;
 import com.crja.tasks_mngr_api.infrastructure.dto.DepartamentoDTO;
+import com.crja.tasks_mngr_api.infrastructure.dto.DepartamentoResponseDTO;
 
 @Service
 public class DepartamentoService {
@@ -42,6 +43,10 @@ public class DepartamentoService {
         return departamentoRepository.findAll().stream()
                 .map(this::toDTO)
                 .collect(Collectors.toList());
+    }
+
+    public List<DepartamentoResponseDTO> obterResumoPorDepartamento() {
+        return departamentoRepository.findDepartamentoResumo();
     }
 
     private DepartamentoDTO toDTO(Departamento departamento){

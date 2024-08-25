@@ -9,8 +9,10 @@ import com.crja.tasks_mngr_api.domain.repository.DepartamentoRepository;
 import com.crja.tasks_mngr_api.domain.repository.PessoaRepository;
 import com.crja.tasks_mngr_api.domain.repository.TarefaRepository;
 import com.crja.tasks_mngr_api.infrastructure.dto.PessoaDTO;
+import com.crja.tasks_mngr_api.infrastructure.dto.PessoaResponseDTO;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -23,7 +25,7 @@ public class PessoaService {
     private final PessoaRepository pessoaRepository;
     private final DepartamentoRepository departamentoRepository;
 
-    public PessoaService(PessoaRepository pessoaRepository, DepartamentoRepository departamentoRepository, TarefaRepository tarefaRepository) {
+    public PessoaService(PessoaRepository pessoaRepository, DepartamentoRepository departamentoRepository) {
         this.pessoaRepository = pessoaRepository;
         this.departamentoRepository = departamentoRepository;
 
@@ -60,10 +62,23 @@ public class PessoaService {
         pessoaRepository.deleteById(id);
     }
 
-    public List<PessoaDTO> listarPessoas() {
-        return pessoaRepository.findAll().stream()
-                    .map(this::toDTO)
-                    .collect(Collectors.toList());
+    public List<PessoaResponseDTO> listarPessoas() {
+        List<Pessoa> pessoas = pessoaRepository.findAll();
+        List<PessoaResponseDTO> responseDTOList = new ArrayList<>();
+
+        for (Pessoa pessoa : pessoas) {
+            Integer totalHorasGastas = this.getTotalHorasGastas(pessoa.getId());
+            
+            
+            PessoaResponseDTO responseDTO = new PessoaResponseDTO(
+                pessoa.getNome(),
+                pessoa.getDepartamento().getNome(),
+                totalHorasGastas
+            );
+            responseDTOList.add(responseDTO);
+        }
+
+        return responseDTOList;
     }
 
     public List<PessoaDTO> buscarPessoasPorNomeEPeriodo(String nome, LocalDate dataInicio, LocalDate dataFim) {
@@ -71,6 +86,11 @@ public class PessoaService {
         
         return pessoas.stream().map(this::toDTO)
                                .collect(Collectors.toList());
+    }
+
+    public Integer getTotalHorasGastas(Long pessoaId) {
+        Integer totalHoras = pessoaRepository.totalHorasGastasPorPessoa(pessoaId);
+        return totalHoras != null ? totalHoras : 0;
     }
 
     private PessoaDTO toDTO(Pessoa pessoa){

@@ -26,6 +26,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
@@ -43,14 +44,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @WebMvcTest(PessoaController.class)
 public class PessoaControllerTest {
 
-    @InjectMocks
+    @Autowired
     private PessoaController pessoaController;
 
-    @Mock
+    @MockBean
     private PessoaService pessoaService;
 
-    @Mock
-    private DepartamentoRepository departamentoRepository;
+    //@Mock
+    //private DepartamentoRepository departamentoRepository;
 
     @Autowired
     private MockMvc mockMvc;
@@ -60,7 +61,7 @@ public class PessoaControllerTest {
 
     @BeforeEach
     public void setup() {
-        MockitoAnnotations.openMocks(this);
+        //MockitoAnnotations.openMocks(this);
     }
 
     @Test

@@ -31,10 +31,10 @@ public class Tarefa {
     @ManyToOne
     private Departamento departamento;
 
-    private int duracao;
+    private Integer duracao;
 
     @ManyToOne
-    @JoinColumn(name = "persona_id")
+    @JoinColumn(name = "pessoa_id")
     private Pessoa pessoaAlocada;
 
     private boolean finalizado;
